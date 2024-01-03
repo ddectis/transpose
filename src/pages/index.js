@@ -1,11 +1,16 @@
 import Head from 'next/head'
 import Image from 'next/image'
 import { Inter } from 'next/font/google'
+import { Spline_Sans_Mono } from 'next/font/google'
 import styles from '@/styles/Home.module.css'
 import Transposer from '@/components/Transposer'
 import LoadSong from '@/components/LoadSong'
 
 const inter = Inter({ subsets: ['latin'] })
+const mono = Spline_Sans_Mono({
+  subsets: ['latin'],
+  display: 'swap'
+})
 
 export default function Home() {
   return (
@@ -16,7 +21,7 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className={`${styles.main} ${inter.className}`}>
+      <main className={`${styles.main} ${mono.className}`}>
         <Transposer/>
         <LoadSong/>
       </main>

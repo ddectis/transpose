@@ -5,10 +5,14 @@ import mammoth from 'mammoth'
 const LoadSong = props =>{
 
     const [docData, setDocData] = useState('');
+    const bigDir = '/songs/Ace of Bass - I saw the Sign.docx'
+    const smallDir = '/songs/Ace - Sign.docx'
+    const t = '/songs/B.docx'
+    const ccr = '/songs/CCR - Midnight Special.docx'
     let doc
 
     useEffect(() =>{
-        fetch('/songs/Ace - sign.docx')
+        fetch(ccr)
             .then(response => response.blob())
             .then(blob => mammoth.convertToHtml({ arrayBuffer: blob }))
             .then(result => setDocData(result.value));

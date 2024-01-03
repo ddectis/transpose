@@ -7,7 +7,7 @@
 
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+  --background-end-rgb: 150, 150, 150;
 
   --primary-glow: conic-gradient(
     from 180deg at 50% 50%,
@@ -85,6 +85,10 @@ body {
   overflow-x: hidden;
 }
 
+strong{
+  white-space-collapse: preserve;
+}
+
 body {
   color: rgb(var(--foreground-rgb));
   background: linear-gradient(
@@ -103,6 +107,15 @@ a {
 button{
   padding: 10px;
   margin: 5px
+}
+
+span{
+  width: 5px;
+  display: inline-block;
+}
+
+p{
+  margin-block: 10px;
 }
 
 @media (prefers-color-scheme: dark) {

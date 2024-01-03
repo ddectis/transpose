@@ -1,0 +1,37 @@
+//look up values to convert a parsed note string to an array index value
+const notesSharp = ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B'];
+const notesFlat = ['C', 'Db', 'D', 'Eb', 'E', 'F', 'Gb', 'G', 'Ab', 'A', 'Bb', 'B'];
+
+
+const GetCurrentNote = note =>{
+        //helper method to parse a string that represents a note into a index value
+        let pitch = ''
+    
+        if(note.length > 1){ 
+            if (note[1] === '#' || note[1] === 'b'){
+                pitch = note.slice(0,2) //make sure we take the # or b if it is present as the second character
+            }else {
+                pitch = note[0]
+            }
+        } else {
+            pitch = note[0]
+        }
+        
+        //console.log("Pitch: " + pitch)
+        for (let i = 0; i < notesSharp.length; i++){
+            if (notesSharp[i] === pitch){
+                return i
+            }
+            if (notesFlat[i] === pitch){
+                return i
+            }
+        }
+        
+        if (note !== ''){ //although we also ignore spaces, it created too many errors
+            console.warn("Note not found! Note: " + note)
+        }
+        
+        return -1
+    }
+
+export default GetCurrentNote
