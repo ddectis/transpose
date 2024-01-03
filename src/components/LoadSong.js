@@ -38,8 +38,8 @@ const LoadSong = props =>{
 
     return (
         <div>
-            <p>Load Song...</p>
-            <button onClick={() => parseHtml()}>Load</button>
+            {/* <p>Load Song...</p>
+            <button onClick={() => parseHtml()}>Load</button> */}
             {/* <div>
                 {docData}
             </div> */}

@@ -28,7 +28,7 @@ const GetCurrentNote = note =>{
         }
         
         if (note !== ''){ //although we also ignore spaces, it created too many errors
-            console.warn("Note not found! Note: " + note)
+            //console.warn("Note not found! Note: " + note)
         }
         
         return -1

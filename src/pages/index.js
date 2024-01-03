@@ -5,6 +5,7 @@ import { Spline_Sans_Mono } from 'next/font/google'
 import styles from '@/styles/Home.module.css'
 import Transposer from '@/components/Transposer'
 import LoadSong from '@/components/LoadSong'
+import ChordSpacing from '@/components/ChordSpacing'
 
 const inter = Inter({ subsets: ['latin'] })
 const mono = Spline_Sans_Mono({
@@ -23,6 +24,7 @@ export default function Home() {
       </Head>
       <main className={`${styles.main} ${mono.className}`}>
         <Transposer/>
+        <ChordSpacing/>
         <LoadSong/>
       </main>
     </>
