@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "html-react-parser": "^5.0.11",
     "mammoth": "^1.6.0",
     "next": "14.0.4",
     "react": "^18",

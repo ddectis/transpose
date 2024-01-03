@@ -30,55 +30,74 @@ const Transposer = props =>{
     const transposeNotesArray = transposeValue =>{
         console.log("transposing " + transposeValue)
         
-        let currentNoteIndex = 0
-        let i = 0
-        console.log(notesArray)
-        for (i = 0; i < notesArray.length; i++){
-            currentNoteIndex = getCurrentNote(notesArray[i])
-            //console.log("current note index coming in: " + currentNoteIndex)
-            currentNoteIndex += transposeValue //val = 1 / -1 / 0 for up/down/redraw
-            //console.log("current note index going out : " + currentNoteIndex)
-            //check to ensure value is within bounds
-            if (transposeValue !== 0){
-                if (currentNoteIndex === notesSharp.length){
-                    currentNoteIndex = 0
-                }
-                if (currentNoteIndex < 0){
-                    currentNoteIndex = notesSharp.length -1
-                }
-            }
-            
-            let remainder = ''
+        const strongElements = document.querySelectorAll('strong')
+        console.log(strongElements)
+        //next up is to make a group of all of the <strong> elements 
+        //and then loop through that
+        //
 
-            //this is meant to capture tonality / modifications after the pitch tone
-            if (notesArray[i].length > 1){
-                console.log("+1: " + notesArray[i][1])
-                if (notesArray[i][1] === '#' || notesArray[i][1] === 'b' ){
-                    remainder = notesArray[i].slice(2)
-                } else {
-                    remainder = notesArray[i].slice(1)
+        let currentNoteIndex = 0
+        
+        //console.log(notesArray)
+        for (let j = 0; j < strongElements.length; j++){
+            let i = 0
+            console.log(strongElements[j].innerText)
+            console.log("i: " + i)
+            const current = strongElements[j].innerText.split(' ')
+            console.log("Current: ", current)
+            for (i = 0; i < current.length; i++){
+                console.log("Current Length: " + current.length)
+                currentNoteIndex = getCurrentNote(current[i])
+                console.log("inner loop iteration: " + i)
+                //console.log("current note index coming in: " + currentNoteIndex)
+                currentNoteIndex += transposeValue //val = 1 / -1 / 0 for up/down/redraw
+                //console.log("current note index going out : " + currentNoteIndex)
+                //check to ensure value is within bounds
+                if (transposeValue !== 0){
+                    if (currentNoteIndex === notesSharp.length){
+                        currentNoteIndex = 0
+                    }
+                    if (currentNoteIndex < 0){
+                        currentNoteIndex = notesSharp.length -1
+                    }
                 }
                 
-                console.log("Remainder: " + remainder)
+                let remainder = ''
+    
+                //this is meant to capture tonality / modifications after the pitch tone
+                if (current.length > 1){ //if the current note has more than 1 character
+                    console.log("+1: " + current[1])
+                    if (current[1] === '#' || current[1] === 'b' ){ //and if the escond character is # or b
+                        remainder = current[i].slice(2) //then we need to take everything after the first 2 characters
+                    } else {
+                        remainder = current[i].slice(1) //and if you have more than 1 char and the 2nd isn't # or b, take everythign after the first
+                    }
+                    
+                    console.log("Remainder: " + remainder)
+                }
+                
+    
+                //parse out a new note value from either the sharps or flats array
+                if (useSharps){
+                    //console.log(currentNoteIndex)
+                    current[i] = notesSharp[currentNoteIndex] + remainder
+                } else {
+                    current[i] = notesFlat[currentNoteIndex] + remainder
+                }
             }
-            
 
-            //parse out a new note value from either the sharps or flats array
-            if (useSharps){
-                console.log(currentNoteIndex)
-                notesArray[i] = notesSharp[currentNoteIndex] + remainder
-            } else {
-                notesArray[i] = notesFlat[currentNoteIndex] + remainder
-            }
+            strongElements[j].innerHTML = ''
+            console.log("Current At the end: ", current)
+            current.forEach(note =>{
+                strongElements[j].innerHTML += `<span>${note} </span>`
+            })
         }
 
-        console.log(notesArray)
-        notesElement.innerHTML = ''
-        notesArray.forEach(note =>{
-            notesElement.innerHTML += `<span>${note}</span><span>&nbsp;</span>`
-        })
+        //console.log(notesArray)
+        
+        
 
-        console.log("Original: ", originalNotesArray)
+        //console.log("Original: ", originalNotesArray)
         
     }
 
@@ -103,7 +122,7 @@ const Transposer = props =>{
             pitch = note[0]
         }
         
-        console.log("Pitch: " + pitch)
+        //console.log("Pitch: " + pitch)
         for (let i = 0; i < notesSharp.length; i++){
             if (notesSharp[i] === pitch){
                 return i
