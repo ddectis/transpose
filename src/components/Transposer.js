@@ -59,7 +59,7 @@ const Transposer = props =>{
                         console.log("Remainder: " + remainder)
                     }
                     
-                    if (remainder[0] === "#" || remainder[1] === "b"){
+                    if (remainder[0] === "#" || remainder[0] === "b"){
     
                         remainder = remainder.substring(1)
                         console.warn("# in wrong place, slicing new remainder: " + remainder)
@@ -90,8 +90,6 @@ const Transposer = props =>{
         //console.log("Original: ", originalNotesArray)
         
     }
-
-
 
     const toggleSharpsFlats = () =>{
         useSharps = !useSharps
