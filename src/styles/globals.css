@@ -86,7 +86,7 @@ body {
 }
 
 strong{
-  white-space-collapse: preserve;
+  white-space: pre-wrap;
 }
 
 body {
