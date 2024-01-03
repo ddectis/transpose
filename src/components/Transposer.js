@@ -10,6 +10,11 @@ const Transposer = props =>{
     let useSharps = true
     //const originalNotesArray = ([...notesArray])
 
+    useEffect(() =>{
+        transposeNotesArray(0)
+    }, [])
+
+
     const transposeNotesArray = transposeValue =>{
         console.log("transposing " + transposeValue)
         
