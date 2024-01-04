@@ -29,7 +29,7 @@ const ListSongs = ({songList, selectSong}) =>{
                         if(song.length > 1){
                             return <button key={song} onClick={() => {selectSong(song)}}>{song}</button>
                         } else {
-                            return <h2 className={styles.divider}>{song}</h2>
+                            return <h2 key={song} className={styles.divider}>{song}</h2>
                         }
                         
                     })}
