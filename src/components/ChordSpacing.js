@@ -19,8 +19,8 @@ const ChordSpacing = props =>{
     return (
         <div>
             <div>Chord Spacing</div>
-            <button onClick={() =>{changeWordSpacing(1)}}>{`+1`}</button>
-            <button onClick={() =>{changeWordSpacing(-1)}}>{`-1`}</button>
+            <button onClick={() =>{changeWordSpacing(-1)}}>{`<<`}</button>
+            <button onClick={() =>{changeWordSpacing(1)}}>{`>>`}</button>
         </div>
         
     )

@@ -107,7 +107,9 @@ a {
 
 button{
   padding: 10px;
-  margin: 5px
+  padding-inline: 20px ;
+  margin: 5px;
+  font-weight: bold;
 }
 
 span{

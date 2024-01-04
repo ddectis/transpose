@@ -1,6 +1,8 @@
 import { Noto_Sans } from "next/font/google";
 import { useState, useEffect } from "react";
 import GetCurrentNote from './GetCurrentNote'
+import styles from '@/styles/Transposer.module.css'
+import ChordSpacing from '@/components/ChordSpacing'
 
 const Transposer = props =>{
 
@@ -10,9 +12,6 @@ const Transposer = props =>{
     let useSharps = true
     //const originalNotesArray = ([...notesArray])
 
-    useEffect(() =>{
-        transposeNotesArray(0)
-    }, [])
 
 
     const transposeNotesArray = transposeValue =>{
@@ -53,17 +52,18 @@ const Transposer = props =>{
                     let remainder = ''
         
                     //this is meant to capture tonality / modifications after the pitch tone
-                    if (current.length > 1){ //if the current note has more than 1 character
+                    if (current.length > 1){ //if the current note has more than 1 character, then we might have a minor chord etc on our hands
                         //console.log("Current: " + current[1])
-                        if (current[1] === '#' || current[1] === 'b' ){ //and if the escond character is # or b
-                            remainder = current[i].slice(2) //then we need to take everything after the first 2 characters
+                        if (current[1] === '#' || current[1] === 'b' ){ //but that 2nd character might be # or b 
+                            remainder = current[i].slice(2) //and if it is, then the first 2 characters are pitch related, so we need to take everything after the first 2 characters
                         } else {
-                            remainder = current[i].slice(1) //and if you have more than 1 char and the 2nd isn't # or b, take everythign after the first
+                            remainder = current[i].slice(1) //and if you have more than 1 char and the 2nd isn't # or b, take everythign after the first because you're looking at e.g. Am
                         }
                         
                         //console.log("Remainder: " + remainder)
                     }
                     
+                    //this is to remove erroneous # or b which would show up sometimes
                     if (remainder[0] === "#" || remainder[0] === "b"){
     
                         remainder = remainder.substring(1)
@@ -98,19 +98,25 @@ const Transposer = props =>{
 
     const toggleSharpsFlats = () =>{
         useSharps = !useSharps
-        transposeNotesArray(0)
+        transposeNotesArray(0) //calling this method with 0 just redraws the notes, swapping any # with b enharmonic
     }
 
     return (
-        <div>
-            <h2>Transposer</h2>
-            <div>
+        <div class={`${styles.outerContainer}`}>
+            <h3>Options</h3>
+            <div class={`${styles.innerContainerTop}`}>
+                <smaller>Transpose</smaller>
                 <button id='transpose-up' onClick={() => transposeNotesArray(1)}>+1</button>
                 <button id='transpose-down' onClick={() => transposeNotesArray(-1)}>-1</button>    
             </div>
+            <div class={`${styles.innerContainerMiddle}`}>
+                <smaller>Sharps / Flats</smaller>
+                <button id='toggle-sharps' onClick={() => toggleSharpsFlats()}># / ♭</button>
+            </div>
+            <div class={`${styles.innerContainerBottom}`}>
+                <ChordSpacing/>
+            </div>
             
-            Toggle
-            <button id='toggle-sharps' onClick={() => toggleSharpsFlats()}># / ♭</button>
         </div>
         
     )

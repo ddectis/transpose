@@ -9,9 +9,12 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "fs": "^0.0.1-security",
+    "fs-extra": "^11.2.0",
     "html-react-parser": "^5.0.11",
     "mammoth": "^1.6.0",
     "next": "14.0.4",
+    "path": "^0.12.7",
     "react": "^18",
     "react-dom": "^18"
   },
