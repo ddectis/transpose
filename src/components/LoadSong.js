@@ -83,7 +83,7 @@ const LoadSong = props => {
     return (
         <div>
             {isSongSelected ? false : <ListSongs songList={songList} selectSong={selectSong} />}
-            <ClearSong clearSong={clearSong} />
+            <ClearSong clearSong={clearSong} isSongSelected={isSongSelected} />
             <div>{parseHtml()}</div>
         </div>
     )

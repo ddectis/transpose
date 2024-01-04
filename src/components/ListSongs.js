@@ -25,18 +25,24 @@ const ListSongs = ({songList, selectSong}) =>{
             //console.log(songList)
             return (
                 <div className={`${styles.songList}`}>
-                    {newList.map(song =>{
-                        if(song.length > 1){
-                            const splitSong = song.split(' - ')
-
-                            return <button key={song} onClick={() => {selectSong(song)}}><u>{splitSong[0]}</u> <br/> <b>{splitSong[1]}</b></button>
-                        } else {
-                            return <h2 key={song} className={styles.divider}>{song}</h2>
-                        }
-                        
-                    })}
+                  {newList.reduce((acc, song) => {
+                    if (song.length > 1) {
+                      acc.buttons.push(
+                        <button key={song} onClick={() => selectSong(song)}>
+                          <u>{song.split(' - ')[0]}</u> <br/> <b>{song.split(' - ')[1]}</b>
+                        </button>
+                      );
+                    } else {
+                      if (acc.buttons.length > 0) {
+                        acc.groups.push(<div key={song} className={styles.buttonGroup}>{acc.buttons}</div>);
+                        acc.buttons = [];
+                      }
+                      acc.groups.push(<div key={`${song}-group`} className={styles.divider}>{song} {song} {song} {song}</div>);
+                    }
+                    return acc;
+                  }, { buttons: [], groups: [] }).groups}
                 </div>
-            )
+              );
         }
     }
     

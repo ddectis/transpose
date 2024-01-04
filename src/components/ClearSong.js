@@ -1,7 +1,13 @@
-const ClearSong = ({clearSong}) =>{
+import styles from '@/styles/ClearSong.module.css'
+
+const ClearSong = ({ clearSong, isSongSelected }) => {
     return (
         <div>
-            <button onClick={clearSong}>Select New Song</button>
+            {isSongSelected && (
+                <button className={styles.clearSongButton} onClick={clearSong}>
+                    Select New Song
+                </button>
+            )}
         </div>
     )
 }

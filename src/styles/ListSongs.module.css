@@ -5,10 +5,24 @@
 .divider{
     margin: 10px;
     text-align: center;
+    font-size: 4em;
+    font-weight: bold;
+    width: 100%;
+    letter-spacing: 100px;
+    background: #d5d5d5;
+    color: #252525;
 }
 
 .main button{
     font-size: 1.3em;
-    padding: 25px;
+    padding-inline: 50px;
     font-weight: unset;
+    background: #252525;
+    color: #d5d5d5;
+}
+
+.buttonGroup{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
 }
