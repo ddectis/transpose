@@ -4,7 +4,7 @@ import styles from '@/styles/ListSongs.module.css'
 const ListSongs = ({songList, selectSong}) =>{
     
     const printSongList = (songList) =>{
-        console.log(songList)
+        //console.log(songList)
 
         const newList = []
         let previousLetter = ''
@@ -37,7 +37,7 @@ const ListSongs = ({songList, selectSong}) =>{
                         acc.groups.push(<div key={song} className={styles.buttonGroup}>{acc.buttons}</div>);
                         acc.buttons = [];
                       }
-                      acc.groups.push(<div key={`${song}-group`} className={styles.divider}>{song} {song} {song} {song}</div>);
+                      acc.groups.push(<div key={`${song}-group`} className={styles.divider}>{song} {song} {song}</div>);
                     }
                     return acc;
                   }, { buttons: [], groups: [] }).groups}

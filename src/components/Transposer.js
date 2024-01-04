@@ -29,8 +29,13 @@ const Transposer = props => {
     const transposeNotesArray = transposeValue => {
         console.log("transposing " + transposeValue)
 
-        //chords are bold, which comes through as "strong". Put them all into a NodeList
-        const strongElements = document.querySelectorAll('strong')
+
+        //MOST of the chords are bold, which comes through as "strong". Put them all into a NodeList
+        const boldElements = document.querySelectorAll('strong')
+        //some of the old song files have the chords in headings instead of just in bold elements, so they come through as h1. 
+        const headingElements = document.querySelectorAll('h1') 
+        //so we combine them
+        const strongElements = [...boldElements, ...headingElements]
         //console.log(strongElements)
 
         let currentNoteIndex = 0
@@ -38,10 +43,10 @@ const Transposer = props => {
         //loop over each of the lines of chords in strongElements
         for (let j = 0; j < strongElements.length; j++) {
             let i = 0
-            //console.log(strongElements[j].innerText)
+            console.log(strongElements[j].innerText)
             //console.log("i: " + i)
             const current = strongElements[j].innerText.split(' ')
-            //console.log("Current: ", current)
+            console.log("Current: ", current)
             for (i = 0; i < current.length; i++) { //loop over each chord in the current chord line
                 //console.log("Current Length: " + current.length)
                 currentNoteIndex = GetCurrentNote(current[i])
@@ -65,14 +70,14 @@ const Transposer = props => {
 
                     //this is meant to capture tonality / modifications after the pitch tone
                     if (current.length > 1) { //if the current note has more than 1 character, then we might have a minor chord etc on our hands
-                        //console.log("Current: " + current[1])
+                        console.log("Current: " + current[1])
                         if (current[1] === '#' || current[1] === 'b') { //but that 2nd character might be # or b 
                             remainder = current[i].slice(2) //and if it is, then the first 2 characters are pitch related, so we need to take everything after the first 2 characters
                         } else {
                             remainder = current[i].slice(1) //and if you have more than 1 char and the 2nd isn't # or b, take everythign after the first because you're looking at e.g. Am
                         }
 
-                        //console.log("Remainder: " + remainder)
+                        console.log("Remainder: " + remainder)
                     }
 
                     //this is to remove erroneous # or b which would show up sometimes
