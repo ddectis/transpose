@@ -40,7 +40,7 @@ const ListSongs = ({songList, selectSong}) =>{
     
     return (
         <div className={`${styles.main}`}>
-            <h1>SONG LIST COMPONENT</h1>
+            <h1>SONG LIST</h1>
             
             <div>
                 {printSongList(songList)}
