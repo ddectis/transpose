@@ -14,6 +14,7 @@ const Transposer = props => {
     //const originalNotesArray = ([...notesArray])
 
     const [isMenuOpen, setIsMenuOpen] = useState(true)
+    const [stepsTransposed, setStepsTransposed] = useState(0)
 
     useEffect(() => {
 
@@ -102,6 +103,8 @@ const Transposer = props => {
             })
         }
 
+        setStepsTransposed(stepsTransposed + transposeValue)
+
         //console.log(notesArray)
         //console.log("Original: ", originalNotesArray)
 
@@ -117,10 +120,13 @@ const Transposer = props => {
         <div className={`${styles.outerContainer} ${isMenuOpen ? styles.up : ''}`}>
             <h2 id={`${styles.title}`}>Options</h2>
             <div className={`${styles.innerContainer} ${styles.top}`}>
-                <smaller>Transpose</smaller>
+                <div className={`${styles.transposeSteps}`}>
+                    <p>Transpose</p> <div>{stepsTransposed} {stepsTransposed === 1 ? 'step' : 'steps'}</div>
+                </div>
                 <div className={`${styles.buttonHolder}`}>
                     <button id='transpose-up' onClick={() => transposeNotesArray(1)}>+1</button>
                     <button id='transpose-down' onClick={() => transposeNotesArray(-1)}>-1</button>
+
                 </div>
 
             </div>
@@ -134,7 +140,7 @@ const Transposer = props => {
             <div className={`${styles.innerContainer} ${styles.bottom}`}>
                 <ChordSpacing />
             </div>
-            <MenuButton toggleMenu={toggleMenu} />
+            <MenuButton isMenuOpen={isMenuOpen} toggleMenu={toggleMenu} />
         </div>
 
 

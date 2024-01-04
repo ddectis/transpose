@@ -13,8 +13,13 @@
     width: 40%;
 }
 
+.outerContainer p{
+    margin: 0;
+}
+
 .innerContainer button{
     width: 45%;
+    font-size: 1.5em;
 }
 
 .innerContainer{
@@ -42,7 +47,7 @@
 }
 
 .up{
-    top: -354px;
+    top: -389px;
     
 }
 
@@ -51,3 +56,7 @@
     
 }
 
+.transposeSteps{
+    display: flex;
+    justify-content: space-around;
+}
