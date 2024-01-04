@@ -15,11 +15,11 @@ const Transposer = props => {
 
     const [isMenuOpen, setIsMenuOpen] = useState(true)
 
-    useEffect(() =>{
+    useEffect(() => {
 
-    },[isMenuOpen])
+    }, [isMenuOpen])
 
-    const toggleMenu = () =>{
+    const toggleMenu = () => {
         console.log("toggle menu click")
         setIsMenuOpen(!isMenuOpen)
     }
@@ -115,22 +115,28 @@ const Transposer = props => {
     return (
 
         <div className={`${styles.outerContainer} ${isMenuOpen ? styles.up : ''}`}>
-        <h2 id={`${styles.title}`}>Options</h2>
-        <div className={`${styles.innerContainer} ${styles.top}`}>
-            <smaller>Transpose</smaller>
-            <button id='transpose-up' onClick={() => transposeNotesArray(1)}>+1</button>
-            <button id='transpose-down' onClick={() => transposeNotesArray(-1)}>-1</button>
+            <h2 id={`${styles.title}`}>Options</h2>
+            <div className={`${styles.innerContainer} ${styles.top}`}>
+                <smaller>Transpose</smaller>
+                <div className={`${styles.buttonHolder}`}>
+                    <button id='transpose-up' onClick={() => transposeNotesArray(1)}>+1</button>
+                    <button id='transpose-down' onClick={() => transposeNotesArray(-1)}>-1</button>
+                </div>
+
+            </div>
+            <div className={`${styles.innerContainer}`}>
+                <smaller>Sharps / Flats</smaller>
+                <div className={`${styles.buttonHolder}`}>
+                    <button id='toggle-sharps' onClick={() => toggleSharpsFlats()}># / ♭</button>
+                </div>
+
+            </div>
+            <div className={`${styles.innerContainer} ${styles.bottom}`}>
+                <ChordSpacing />
+            </div>
+            <MenuButton toggleMenu={toggleMenu} />
         </div>
-        <div className={`${styles.innerContainer}`}>
-            <smaller>Sharps / Flats</smaller>
-            <button id='toggle-sharps' onClick={() => toggleSharpsFlats()}># / ♭</button>
-        </div>
-        <div className={`${styles.innerContainer} ${styles.bottom}`}>
-            <ChordSpacing />
-        </div>
-        <MenuButton toggleMenu={toggleMenu}/>
-    </div>
-    
+
 
     )
 }

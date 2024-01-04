@@ -5,4 +5,5 @@
 #menuButton{
     width: 100%;
     font-size: 2em;
+    padding-block: 0px;
 }
