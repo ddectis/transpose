@@ -27,7 +27,9 @@ const ListSongs = ({songList, selectSong}) =>{
                 <div className={`${styles.songList}`}>
                     {newList.map(song =>{
                         if(song.length > 1){
-                            return <button key={song} onClick={() => {selectSong(song)}}>{song}</button>
+                            const splitSong = song.split(' - ')
+
+                            return <button key={song} onClick={() => {selectSong(song)}}><u>{splitSong[0]}</u> <br/> <b>{splitSong[1]}</b></button>
                         } else {
                             return <h2 key={song} className={styles.divider}>{song}</h2>
                         }

@@ -7,3 +7,8 @@
     text-align: center;
 }
 
+.main button{
+    font-size: 1.3em;
+    padding: 25px;
+    font-weight: unset;
+}
