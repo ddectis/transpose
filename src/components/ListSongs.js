@@ -1,61 +1,86 @@
 import styles from '@/styles/ListSongs.module.css'
 
 //songList is actually an array
-const ListSongs = ({songList, selectSong}) =>{
-    
-    const printSongList = (songList) =>{
-        //console.log(songList)
+const ListSongs = ({ songList, selectSong }) => {
 
-        const newList = []
-        let previousLetter = ''
+  const toggleExpand = id => {
+    console.log("expand/contract " + id)
+    const element = document.getElementById(id)
+    const childElement = element.nextElementSibling
+    childElement.classList.toggle(styles.hide)
+    console.log(element)
+    console.log(childElement)
+  }
 
-        //process the songArray and insert capital letter breakers at each new letter to separate e.g. the "A" songs from the "B" songs etc
-        for (const song of songList){
-            const firstLetter = song[0].toUpperCase()
+  const printSongList = (songList) => {
+    //console.log(songList)
 
-            if (firstLetter !== previousLetter){
-                newList.push(firstLetter)
-                previousLetter = firstLetter
-            }
+    const newList = []
+    let previousLetter = ''
 
-            newList.push(song)
-        }
+    //process the songArray and insert capital letter breakers at each new letter to separate e.g. the "A" songs from the "B" songs etc
+    for (const song of songList) {
+      const firstLetter = song[0].toUpperCase()
 
-        if (newList){
-            //console.log(songList)
-            return (
-                <div className={`${styles.songList}`}>
-                  {newList.reduce((acc, song) => {
-                    if (song.length > 1) {
-                      acc.buttons.push(
-                        <button key={song} onClick={() => selectSong(song)}>
-                          <u>{song.split(' - ')[0]}</u> <br/> <b>{song.split(' - ')[1]}</b>
-                        </button>
-                      );
-                    } else {
-                      if (acc.buttons.length > 0) {
-                        acc.groups.push(<div key={song} className={styles.buttonGroup}>{acc.buttons}</div>);
-                        acc.buttons = [];
-                      }
-                      acc.groups.push(<div key={`${song}-group`} className={styles.divider}>{song} {song} {song}</div>);
-                    }
-                    return acc;
-                  }, { buttons: [], groups: [] }).groups}
+      if (firstLetter !== previousLetter) {
+        newList.push(firstLetter)
+        previousLetter = firstLetter
+      }
+
+      newList.push(song)
+    }
+
+    if (newList) {
+      //console.log(songList)
+      return (
+        <div className={`${styles.songList}`}>
+          {newList.reduce((acc, song) => {
+            if (song.length > 1) { //dividers have a length of 1, so as long as we stay > 1 we'll accumulate buttons for each song that starts with the same letter
+              acc.buttons.push(
+                <button key={song} onClick={() => selectSong(song)}>
+                  <u>{song.split(' - ')[0]}</u> <br /> <b>{song.split(' - ')[1]}</b>
+                </button>
+              );
+            } else { //and then when a divider shows up we end up here
+              if (acc.buttons.length > 0) {  //and we'll probably have a buttons group here
+                acc.groups.push( //so we push a new buttonGroup div which contains the songs we just grouped from the last starting letter
+                  <div
+                    key={song}
+                    className={`${styles.buttonGroup} ${styles.hide}`}
+                  >
+                    {acc.buttons}
+                  </div>
+                );
+                acc.buttons = []; //the buttons accumulator is then cleared ahead of the next group
+              }
+              acc.groups.push( //recall that in this part of the conditional, we've had a length of 1 i.e. a divider, so we create a divider div
+                <div
+                  key={`${song}-group`}
+                  className={styles.divider}
+                  onClick={() => toggleExpand(song)}
+                  id={song}
+                >
+                  {song} {song} {song}
                 </div>
               );
-        }
-    }
-    
-    return (
-        <div className={`${styles.main}`}>
-            <h1>SONG LIST</h1>
-            
-            <div>
-                {printSongList(songList)}
-            </div>
-            
+            }
+            return acc;
+          }, { buttons: [], groups: [] }).groups}
         </div>
-    )
+      );
+    }
+  }
+
+  return (
+    <div className={`${styles.main}`}>
+      <h1>SONG LIST</h1>
+
+      <div>
+        {printSongList(songList)}
+      </div>
+
+    </div>
+  )
 }
 
 export default ListSongs

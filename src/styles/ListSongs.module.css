@@ -26,3 +26,11 @@
     flex-wrap: wrap;
     justify-content: center;
 }
+
+.hide{
+    display: none;
+}
+
+.wide{
+    width: 100%
+}

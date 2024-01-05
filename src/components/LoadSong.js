@@ -6,12 +6,12 @@ import ClearSong from '@/components/ClearSong'
 import { Noto_Sans_Ogham } from 'next/font/google';
 import styles from '@/styles/LoadSong.module.css'
 
-const LoadSong = ({isSongSelected, setIsSongSelected, stepsTransposed, setStepsTransposed}) => {
+const LoadSong = ({ isSongSelected, setIsSongSelected, stepsTransposed, setStepsTransposed }) => {
 
     const [docData, setDocData] = useState('');
     const [songList, setSongList] = useState([])
     const [songTitle, setSongTitle] = useState('')
-    
+
     const bigDir = '/songs/Ace of Bass - I saw the Sign.docx'
     const smallDir = '/songs/Ace - Sign.docx'
     const t = '/songs/B.docx'
@@ -69,7 +69,7 @@ const LoadSong = ({isSongSelected, setIsSongSelected, stepsTransposed, setStepsT
         }
     }
 
-    const scrollToTop = () =>{
+    const scrollToTop = () => {
         window.scrollTo({
             top: 0,
             behavior: 'smooth'
@@ -96,8 +96,13 @@ const LoadSong = ({isSongSelected, setIsSongSelected, stepsTransposed, setStepsT
     }
 
     return (
-        <div>
-            {isSongSelected ? false : <ListSongs songList={songList} selectSong={selectSong} />}
+        <div className={styles.wide}>
+            {isSongSelected ? false :
+                <ListSongs
+                    songList={songList}
+                    selectSong={selectSong}
+                />
+            }
             <ClearSong clearSong={clearSong} isSongSelected={isSongSelected} />
             <div className={styles.songTitle}>{songTitle}</div>
             <div>{parseHtml()}</div>
