@@ -6,7 +6,7 @@ import ClearSong from '@/components/ClearSong'
 import { Noto_Sans_Ogham } from 'next/font/google';
 import styles from '@/styles/LoadSong.module.css'
 
-const LoadSong = ({isSongSelected, setIsSongSelected}) => {
+const LoadSong = ({isSongSelected, setIsSongSelected, stepsTransposed, setStepsTransposed}) => {
 
     const [docData, setDocData] = useState('');
     const [songList, setSongList] = useState([])
@@ -69,6 +69,13 @@ const LoadSong = ({isSongSelected, setIsSongSelected}) => {
         }
     }
 
+    const scrollToTop = () =>{
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        })
+    }
+
     const selectSong = song => {
         const path = `/songs/${song}.docx`
         const testPath = `/songs/Lynyrd Skynyrd - Simple Man(1).docx`
@@ -76,6 +83,7 @@ const LoadSong = ({isSongSelected, setIsSongSelected}) => {
         loadSong(path)
         setIsSongSelected(true)
         setSongTitle(song)
+        scrollToTop()
     }
 
     const clearSong = () => {
@@ -83,6 +91,8 @@ const LoadSong = ({isSongSelected, setIsSongSelected}) => {
         setDocData(null)
         setIsSongSelected(false)
         setSongTitle('')
+        setStepsTransposed(0)
+
     }
 
     return (

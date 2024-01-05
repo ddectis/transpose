@@ -18,6 +18,7 @@ const mono = Spline_Sans_Mono({
 export default function Home() {
 
   const [isSongSelected, setIsSongSelected] = useState(false)
+  const [stepsTransposed, setStepsTransposed] = useState(0)
 
   return (
     <>
@@ -28,9 +29,18 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className={`${styles.main} ${mono.className}`}>
-        <Transposer isSongSelected={isSongSelected} />
+        <Transposer
+          isSongSelected={isSongSelected}
+          stepsTransposed={stepsTransposed}
+          setStepsTransposed={setStepsTransposed}
+        />
 
-        <LoadSong isSongSelected={isSongSelected} setIsSongSelected={setIsSongSelected}/>
+        <LoadSong
+          isSongSelected={isSongSelected}
+          setIsSongSelected={setIsSongSelected}
+          stepsTransposed={stepsTransposed}
+          setStepsTransposed={setStepsTransposed}
+        />
       </main>
     </>
   )

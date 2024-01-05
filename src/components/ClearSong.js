@@ -5,7 +5,7 @@ const ClearSong = ({ clearSong, isSongSelected }) => {
         <div>
             {isSongSelected && (
                 <button className={styles.clearSongButton} onClick={clearSong}>
-                    Select New Song
+                    SELECT NEW SONG
                 </button>
             )}
         </div>

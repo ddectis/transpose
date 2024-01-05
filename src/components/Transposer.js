@@ -5,7 +5,7 @@ import styles from '@/styles/Transposer.module.css'
 import ChordSpacing from '@/components/ChordSpacing'
 import MenuButton from "./MenuButton";
 
-const Transposer = ({ isSongSelected }) => {
+const Transposer = ({ isSongSelected, stepsTransposed, setStepsTransposed }) => {
 
     //look up values to convert a parsed note string to an array index value
     const notesSharp = ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B'];
@@ -14,7 +14,7 @@ const Transposer = ({ isSongSelected }) => {
     //const originalNotesArray = ([...notesArray])
 
     const [isMenuOpen, setIsMenuOpen] = useState(true)
-    const [stepsTransposed, setStepsTransposed] = useState(0)
+    
 
     useEffect(() => {
     }, [isMenuOpen])
@@ -28,7 +28,6 @@ const Transposer = ({ isSongSelected }) => {
     const transposeNotesArray = transposeValue => {
         if (isSongSelected) {
             console.log("transposing " + transposeValue)
-
 
             //MOST of the chords are bold, which comes through as "strong". Put them all into a NodeList
             const boldElements = document.querySelectorAll('strong')
