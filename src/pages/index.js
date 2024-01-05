@@ -5,6 +5,8 @@ import { Spline_Sans_Mono } from 'next/font/google'
 import styles from '@/styles/Home.module.css'
 import Transposer from '@/components/Transposer'
 import LoadSong from '@/components/LoadSong'
+import { useState } from 'react'
+
 
 
 const inter = Inter({ subsets: ['latin'] })
@@ -14,6 +16,9 @@ const mono = Spline_Sans_Mono({
 })
 
 export default function Home() {
+
+  const [isSongSelected, setIsSongSelected] = useState(false)
+
   return (
     <>
       <Head>
@@ -23,9 +28,9 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className={`${styles.main} ${mono.className}`}>
-        <Transposer/>
-        
-        <LoadSong/>
+        <Transposer isSongSelected={isSongSelected} />
+
+        <LoadSong isSongSelected={isSongSelected} setIsSongSelected={setIsSongSelected}/>
       </main>
     </>
   )

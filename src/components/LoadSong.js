@@ -6,12 +6,12 @@ import ClearSong from '@/components/ClearSong'
 import { Noto_Sans_Ogham } from 'next/font/google';
 import styles from '@/styles/LoadSong.module.css'
 
-const LoadSong = props => {
+const LoadSong = ({isSongSelected, setIsSongSelected}) => {
 
     const [docData, setDocData] = useState('');
     const [songList, setSongList] = useState([])
     const [songTitle, setSongTitle] = useState('')
-    const [isSongSelected, setIsSongSelected] = useState(false)
+    
     const bigDir = '/songs/Ace of Bass - I saw the Sign.docx'
     const smallDir = '/songs/Ace - Sign.docx'
     const t = '/songs/B.docx'
@@ -57,7 +57,7 @@ const LoadSong = props => {
             doc = parser.parseFromString(docData, 'text/html')
             //console.log(doc.body)
             const strongElements = doc.querySelectorAll('strong') //all of the chords are bold, bold comes through as 'strong', here we grab all of these elements and put them in a node list
-            console.log(strongElements)
+            //console.log(strongElements)
 
             strongElements.forEach((element, index) => { //this might be superfluous? Not using this currently
                 element.id = `strong-${index}` //the ID is not actually used
@@ -82,6 +82,7 @@ const LoadSong = props => {
         console.log("Clear Song")
         setDocData(null)
         setIsSongSelected(false)
+        setSongTitle('')
     }
 
     return (
