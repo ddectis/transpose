@@ -2,7 +2,7 @@ import styles from '@/styles/ClearSong.module.css'
 
 const ClearSong = ({ clearSong, isSongSelected }) => {
     return (
-        <div>
+        <div className={styles.outerContainer}>
             {isSongSelected && (
                 <button className={styles.clearSongButton} onClick={clearSong}>
                     SELECT NEW SONG
