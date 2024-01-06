@@ -5,6 +5,7 @@ import { Spline_Sans_Mono } from 'next/font/google'
 import styles from '@/styles/Home.module.css'
 import Transposer from '@/components/Transposer'
 import LoadSong from '@/components/LoadSong'
+import PageDown from '@/components/PageDown'
 import { useState } from 'react'
 
 
@@ -37,7 +38,7 @@ export default function Home() {
             height={250}
             alt='CMH Logo'
           />
-          
+
         </div>
 
         <h1>CMH SONGBOOK TRANSPOSITION TOOL</h1>
@@ -48,7 +49,6 @@ export default function Home() {
             stepsTransposed={stepsTransposed}
             setStepsTransposed={setStepsTransposed}
           />
-
         ) : null}
 
 
@@ -58,6 +58,10 @@ export default function Home() {
           stepsTransposed={stepsTransposed}
           setStepsTransposed={setStepsTransposed}
         />
+
+        {isSongSelected ? (
+          <PageDown />
+        ) : null}
       </main>
     </>
   )

@@ -1,0 +1,10 @@
+.pageDown{
+    position: fixed;
+    right: 1%;
+    bottom: 1%;
+}
+
+.pageDown button{
+    padding-block: 50px;
+    font-size: 2em;
+}
