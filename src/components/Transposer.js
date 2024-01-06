@@ -21,6 +21,11 @@ const Transposer = ({ isSongSelected, stepsTransposed, setStepsTransposed }) => 
     useEffect(() => {
     }, [isMenuOpen])
 
+    useEffect(() =>{
+        transposeNotesArray(1)
+        transposeNotesArray(-1)
+    }, [isSongSelected])
+
     const toggleMenu = () => {
         console.log("toggle menu click")
         setIsMenuOpen(!isMenuOpen)

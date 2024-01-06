@@ -38,7 +38,7 @@ export default function Home() {
 
         {!isSongSelected ? (
           <div>
-            <Link className={`${styles.homeLink}`} href='goldengatejams.com'>Back to CMH Home</Link>
+            <Link className={`${styles.homeLink}`} href='https://goldengatejams.com'>Back to CMH Home</Link>
             <Image
               src='/logo.jpg'
               width={721}
