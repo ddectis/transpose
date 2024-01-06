@@ -4,6 +4,7 @@ import GetCurrentNote from './GetCurrentNote'
 import styles from '@/styles/Transposer.module.css'
 import ChordSpacing from '@/components/ChordSpacing'
 import MenuButton from "./MenuButton";
+import FontSizer from "./FontSizer";
 
 const Transposer = ({ isSongSelected, stepsTransposed, setStepsTransposed }) => {
 
@@ -143,6 +144,9 @@ const Transposer = ({ isSongSelected, stepsTransposed, setStepsTransposed }) => 
                 </div>
 
             </div>
+            <div className={`${styles.innerContainer}`}>
+                <FontSizer/>
+            </div>
             <div className={`${styles.innerContainer} ${styles.bottom}`}>
                 <ChordSpacing isSongSelected={isSongSelected} />
             </div>
@@ -154,4 +158,5 @@ const Transposer = ({ isSongSelected, stepsTransposed, setStepsTransposed }) => 
 }
 
 export default Transposer
+
 

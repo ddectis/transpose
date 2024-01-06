@@ -13,6 +13,7 @@ const ListSongs = ({ songList, selectSong }) => {
     console.log(childElement)
   }
 
+  //the comma separated list of songs is processed and then wrapped in HTML
   const printSongList = (songList) => {
     //console.log(songList)
 
@@ -39,7 +40,7 @@ const ListSongs = ({ songList, selectSong }) => {
             if (song.length > 1) { //dividers have a length of 1, so as long as we stay > 1 we'll accumulate buttons for each song that starts with the same letter
               acc.buttons.push(
                 <button key={song} onClick={() => selectSong(song)}>
-                  <u>{song.split(' - ')[0]}</u> <br /> <b>{song.split(' - ')[1]}</b>
+                  <u>{song.split(' - ')[0]}</u> <br /> <h2>{song.split(' - ')[1]}</h2>
                 </button>
               );
             } else { //and then when a divider shows up we end up here
@@ -56,12 +57,10 @@ const ListSongs = ({ songList, selectSong }) => {
                 acc.buttons = []; //the buttons accumulator is then cleared ahead of the next group
               }
 
-              const dividerClass = `${styles.divider}${song}`
-              console.log(dividerClass)
               acc.groups.push( //recall that in this part of the conditional, we've had a length of 1 i.e. a divider, so we create a divider div
                 <div
                   key={`${song}-group`}
-                  className={`${styles.divider} ${dividerClass}`}
+                  className={`${styles.divider}`}
                   onClick={() => toggleExpand(song)}
                   id={`divider-${song}`}
                 >
