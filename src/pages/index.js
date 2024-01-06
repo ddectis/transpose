@@ -44,6 +44,7 @@ export default function Home() {
               width={721}
               height={250}
               alt='CMH Logo'
+              className={`${styles.logo}`}
             />
             <h1>SONGBOOK TRANSPOSITION TOOL</h1>
             <p>By: Dan Dectis</p>

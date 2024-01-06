@@ -106,7 +106,7 @@
 }
 
 .logo {
-  position: relative;
+  border-radius: 50px;
 }
 
 .homeLink{
