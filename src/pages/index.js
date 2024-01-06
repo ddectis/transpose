@@ -29,11 +29,28 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className={`${styles.main} ${mono.className}`}>
-        <Transposer
-          isSongSelected={isSongSelected}
-          stepsTransposed={stepsTransposed}
-          setStepsTransposed={setStepsTransposed}
-        />
+
+        <div>
+          <Image
+            src='/logo.jpg'
+            width={721}
+            height={250}
+            alt='CMH Logo'
+          />
+          
+        </div>
+
+        <h1>CMH SONGBOOK TRANSPOSITION TOOL</h1>
+
+        {isSongSelected ? (
+          <Transposer
+            isSongSelected={isSongSelected}
+            stepsTransposed={stepsTransposed}
+            setStepsTransposed={setStepsTransposed}
+          />
+
+        ) : null}
+
 
         <LoadSong
           isSongSelected={isSongSelected}

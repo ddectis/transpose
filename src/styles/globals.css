@@ -127,6 +127,119 @@ p{
   margin-block: 10px;
 }
 
+#divider-4{
+  background:rgb(255, 127, 127)
+}
+
+#divider-A {
+  background: rgb(255, 200, 127);
+}
+
+#divider-B {
+  background: rgb(253, 255, 127);
+}
+
+#divider-C {
+  background: rgb(165, 255, 127);
+}
+
+#divider-D {
+  background: rgb(127, 255, 142);
+}
+
+#divider-E {
+  background: rgb(127, 255, 176);
+}
+
+#divider-F {
+  background: rgb(127, 255, 225);
+}
+
+#divider-G {
+  background: rgb(127, 172, 255);
+}
+
+#divider-H {
+  background: rgb(150, 127, 255);
+}
+
+#divider-I {
+  background: rgb(202, 127, 255);
+}
+
+#divider-J {
+  background: rgb(255, 127, 193);
+}
+
+#divider-K {
+  background: rgb(202, 127, 255);
+}
+
+#divider-L {
+  background: rgb(150, 127, 255);
+}
+
+#divider-M {
+  background: rgb(127, 172, 255);
+}
+
+#divider-N {
+  background: rgb(127, 255, 225);
+}
+
+#divider-O {
+  background: rgb(127, 255, 176);
+}
+
+#divider-P {
+  background: rgb(165, 255, 127);
+}
+
+#divider-Q {
+  background: rgb(127, 255, 176);
+}
+
+#divider-R {
+  background: rgb(127, 172, 255);
+}
+
+#divider-S {
+  background: rgb(150, 127, 255);
+}
+
+#divider-T {
+  background: rgb(202, 127, 255);
+}
+
+#divider-U {
+  background: rgb(255, 127, 202);
+}
+
+#divider-V {
+  background: rgb(255, 127, 219);
+}
+
+#divider-W {
+  background: rgb(206, 191, 255);
+}
+
+#divider-X {
+  background: rgb(180, 127, 255);
+}
+
+#divider-Y {
+  background: rgb(219, 127, 255);
+}
+
+#divider-Z {
+  background: rgb(255, 127, 172);
+}
+
+h1{
+  text-align: center;
+}
+
+
 @media (prefers-color-scheme: dark) {
   html {
     color-scheme: dark;

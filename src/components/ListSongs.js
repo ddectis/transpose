@@ -6,7 +6,7 @@ const ListSongs = ({ songList, selectSong }) => {
 
   const toggleExpand = id => {
     console.log("expand/contract " + id)
-    const element = document.getElementById(id)
+    const element = document.getElementById(`divider-${id}`)
     const childElement = element.nextElementSibling
     childElement.classList.toggle(styles.hide)
     console.log(element)
@@ -55,14 +55,17 @@ const ListSongs = ({ songList, selectSong }) => {
                 );
                 acc.buttons = []; //the buttons accumulator is then cleared ahead of the next group
               }
+
+              const dividerClass = `${styles.divider}${song}`
+              console.log(dividerClass)
               acc.groups.push( //recall that in this part of the conditional, we've had a length of 1 i.e. a divider, so we create a divider div
                 <div
                   key={`${song}-group`}
-                  className={styles.divider}
+                  className={`${styles.divider} ${dividerClass}`}
                   onClick={() => toggleExpand(song)}
-                  id={song}
+                  id={`divider-${song}`}
                 >
-                  {song} {song} {song}
+                  {song}
                 </div>
               );
             }
@@ -75,8 +78,7 @@ const ListSongs = ({ songList, selectSong }) => {
 
   return (
     <div className={`${styles.main}`}>
-      <h1>SONG LIST</h1>
-      <ListControls/>
+      <ListControls />
       <div>
         {printSongList(songList)}
       </div>

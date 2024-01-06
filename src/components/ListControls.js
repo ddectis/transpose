@@ -24,8 +24,7 @@ const ListControls = () =>{
 
 
     return (
-        <div>
-            <p>List Controls</p>
+        <div className={styles.listControlButtons}>
             <button onClick={() =>{expandAll()}}>Expand All</button>
             <button onClick={() =>{contractAll()}}>Contract All</button>
         </div>
