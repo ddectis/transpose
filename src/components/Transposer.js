@@ -5,6 +5,7 @@ import styles from '@/styles/Transposer.module.css'
 import ChordSpacing from '@/components/ChordSpacing'
 import MenuButton from "./MenuButton";
 import FontSizer from "./FontSizer";
+import LineSpacer from "./LineSpacer";
 
 const Transposer = ({ isSongSelected, stepsTransposed, setStepsTransposed }) => {
 
@@ -125,7 +126,7 @@ const Transposer = ({ isSongSelected, stepsTransposed, setStepsTransposed }) => 
     return (
 
         <div className={`${styles.outerContainer} ${isMenuOpen ? styles.up : ''}`}>
-            <h2 id={`${styles.title}`}>Options</h2>
+            
             <div className={`${styles.innerContainer} ${styles.top}`}>
                 <div className={`${styles.transposeSteps}`}>
                     <p>Transpose</p> <div>{stepsTransposed} {stepsTransposed === 1 ? 'step' : 'steps'}</div>
@@ -146,6 +147,9 @@ const Transposer = ({ isSongSelected, stepsTransposed, setStepsTransposed }) => 
             </div>
             <div className={`${styles.innerContainer}`}>
                 <FontSizer/>
+            </div>
+            <div className={`${styles.innerContainer}`}>
+                <LineSpacer/>
             </div>
             <div className={`${styles.innerContainer} ${styles.bottom}`}>
                 <ChordSpacing isSongSelected={isSongSelected} />

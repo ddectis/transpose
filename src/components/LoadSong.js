@@ -114,7 +114,7 @@ const LoadSong = ({ isSongSelected, setIsSongSelected, stepsTransposed, setSteps
                 isSongSelected={isSongSelected}
             />
             <div className={styles.songTitle}>{songTitle}</div>
-            <div>{parseHtml()}</div>
+            <div className={styles.songHolder}>{parseHtml()}</div>
         </div>
     )
 }

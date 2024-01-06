@@ -1,7 +1,7 @@
 .outerContainer{
     outline: 1px solid black;
     padding: 10px;
-    padding-inline: 30px;
+    
     border-radius: 20px;
     text-align: center;
     position: fixed;
@@ -13,6 +13,7 @@
     width: 40%;
     right: 5%;
     z-index: 100;
+    outline: 5px solid black;
 }
 
 .outerContainer p{
@@ -50,7 +51,7 @@
 }
 
 .up{
-    top: -540px;
+    top: -626px;
     
 }
 
@@ -62,4 +63,20 @@
 .transposeSteps{
     display: flex;
     justify-content: space-around;
+}
+
+.menuButton{
+    
+    top: 0;
+    left: 5%;
+    font-size: 1.3em;
+    
+    font-weight: unset;
+    background: #484848;
+    color: #dddddd;
+    font-weight: bold;
+    width: 100%;
+    font-size: 2em;
+    padding-block: 0px;
+    border-radius: 20px;
 }
