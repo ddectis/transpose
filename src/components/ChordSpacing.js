@@ -1,4 +1,5 @@
 import { Vidaloka } from "next/font/google"
+import styles from '@/styles/Transposer.module.css'
 
 const ChordSpacing = ({ isSongSelected }) => {
 
@@ -24,7 +25,7 @@ const ChordSpacing = ({ isSongSelected }) => {
             <div>Chord Spacing</div>
             <button onClick={() => { changeWordSpacing(-1) }}>{`<<`}</button>
             <button onClick={() => { changeWordSpacing(1) }}>{`>>`}</button>
-            <p>If it is not working, try transposing up / down and retry</p>
+            <p className={`${styles.tipText}`}>If it is not working, try transposing up / down and retry</p>
         </div>
 
     )

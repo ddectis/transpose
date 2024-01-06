@@ -51,7 +51,7 @@
 }
 
 .up{
-    top: -665px;
+    top: -658px;
     
 }
 
@@ -79,4 +79,8 @@
     font-size: 2em;
     padding-block: 0px;
     border-radius: 20px;
+}
+
+.tipText{
+    font-size: 0.8em;
 }
