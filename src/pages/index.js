@@ -5,7 +5,7 @@ import { Spline_Sans_Mono } from 'next/font/google'
 import styles from '@/styles/Home.module.css'
 import Transposer from '@/components/Transposer'
 import LoadSong from '@/components/LoadSong'
-import PageDown from '@/components/PageDown'
+import PageScroll from '@/components/PageScroll'
 import { useState } from 'react'
 
 
@@ -60,7 +60,7 @@ export default function Home() {
         />
 
         {isSongSelected ? (
-          <PageDown />
+          <PageScroll />
         ) : null}
       </main>
     </>
