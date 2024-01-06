@@ -1,4 +1,5 @@
 import styles from '@/styles/ListSongs.module.css'
+import ListControls from './ListControls'
 
 //songList is actually an array
 const ListSongs = ({ songList, selectSong }) => {
@@ -47,6 +48,7 @@ const ListSongs = ({ songList, selectSong }) => {
                   <div
                     key={song}
                     className={`${styles.buttonGroup} ${styles.hide}`}
+                    id='buttonGroup'
                   >
                     {acc.buttons}
                   </div>
@@ -74,7 +76,7 @@ const ListSongs = ({ songList, selectSong }) => {
   return (
     <div className={`${styles.main}`}>
       <h1>SONG LIST</h1>
-
+      <ListControls/>
       <div>
         {printSongList(songList)}
       </div>
