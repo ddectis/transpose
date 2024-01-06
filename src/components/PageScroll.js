@@ -1,5 +1,6 @@
 import React from "react"
 import styles from '@/styles/PageScroll.module.css'
+import Image from 'next/image'
 
 const PageScroll = () => {
     const handleScroll = value => {
@@ -10,8 +11,28 @@ const PageScroll = () => {
 
     return (
         <div className={`${styles.pageUpDown}`}>
-            <button className={`${styles.marginBottom}`} onClick={() => { handleScroll( -1) }}>PageUp</button>
-            <button onClick={() => { handleScroll( 1) }}>PageDn</button>
+            <button
+                className={`${styles.marginBottom}`}
+                onClick={() => { handleScroll(-1) }}
+            ><Image
+                    src='/arrow.png'
+                    width={50}
+                    height={50}
+                    alt='CMH Logo'
+                    
+                />
+            </button>
+            <button
+                onClick={() => { handleScroll(1) }}
+            >
+                <Image
+                    src='/arrow.png'
+                    width={50}
+                    height={50}
+                    alt='CMH Logo'
+                    className={`${styles.scrollDownImage}`}
+                />
+            </button>
         </div>
     )
 }
