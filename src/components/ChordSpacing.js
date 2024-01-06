@@ -24,7 +24,7 @@ const ChordSpacing = ({ isSongSelected }) => {
             <div>Chord Spacing</div>
             <button onClick={() => { changeWordSpacing(-1) }}>{`<<`}</button>
             <button onClick={() => { changeWordSpacing(1) }}>{`>>`}</button>
-            <p>If it's not working, try transposing up / down and retry</p>
+            <p>If it is not working, try transposing up / down and retry</p>
         </div>
 
     )
