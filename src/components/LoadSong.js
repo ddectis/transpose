@@ -5,17 +5,14 @@ import ListSongs from './ListSongs';
 import ClearSong from '@/components/ClearSong'
 import { Noto_Sans_Ogham } from 'next/font/google';
 import styles from '@/styles/LoadSong.module.css'
+import RandomSong from './RandomSong';
 
-const LoadSong = ({ isSongSelected, setIsSongSelected, stepsTransposed, setStepsTransposed }) => {
+const LoadSong = ({ isSongSelected, setIsSongSelected, stepsTransposed, setStepsTransposed, setArrayOfSongTitles, arrayOfSongTitles }) => {
 
     const [docData, setDocData] = useState('');
     const [songList, setSongList] = useState([])
     const [songTitle, setSongTitle] = useState('')
 
-    const bigDir = '/songs/Ace of Bass - I saw the Sign.docx'
-    const smallDir = '/songs/Ace - Sign.docx'
-    const t = '/songs/B.docx'
-    const ccr = '/songs/CCR - Midnight Special.docx'
     let doc
 
     useEffect(() => {
@@ -33,6 +30,7 @@ const LoadSong = ({ isSongSelected, setIsSongSelected, stepsTransposed, setSteps
 
                 // Set the songList state
                 setSongList(data);
+                setArrayOfSongTitles(data)
             } catch (error) {
                 console.error('Error fetching data:', error);
             }
@@ -97,13 +95,24 @@ const LoadSong = ({ isSongSelected, setIsSongSelected, stepsTransposed, setSteps
 
     return (
         <div className={styles.wide}>
+            <RandomSong
+                        arrayOfSongTitles={arrayOfSongTitles}
+                        selectSong={selectSong}
+                    />
             {isSongSelected ? false :
-                <ListSongs
-                    songList={songList}
-                    selectSong={selectSong}
-                />
+                <div className={styles.wide}>
+                    
+                    <ListSongs
+                        songList={songList}
+                        selectSong={selectSong}
+                    />
+                </div>
+
             }
-            <ClearSong clearSong={clearSong} isSongSelected={isSongSelected} />
+            <ClearSong
+                clearSong={clearSong}
+                isSongSelected={isSongSelected}
+            />
             <div className={styles.songTitle}>{songTitle}</div>
             <div>{parseHtml()}</div>
         </div>

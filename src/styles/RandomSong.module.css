@@ -1,0 +1,13 @@
+.buttonHolder{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.buttonHolder button{
+    width: 50%;
+    background-color: blueviolet;
+    border: 1px solid white;
+    font-size: 2em;
+    margin-block: 20px;
+}

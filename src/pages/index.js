@@ -1,11 +1,13 @@
 import Head from 'next/head'
 import Image from 'next/image'
+import Link from 'next/link'
 import { Inter } from 'next/font/google'
 import { Spline_Sans_Mono } from 'next/font/google'
 import styles from '@/styles/Home.module.css'
 import Transposer from '@/components/Transposer'
 import LoadSong from '@/components/LoadSong'
 import PageScroll from '@/components/PageScroll'
+import RandomSong from '@/components/RandomSong'
 import { useState } from 'react'
 
 
@@ -20,6 +22,8 @@ export default function Home() {
 
   const [isSongSelected, setIsSongSelected] = useState(false)
   const [stepsTransposed, setStepsTransposed] = useState(0)
+  const [arrayOfSongTitles, setArrayOfSongTitles] = useState([])
+
 
   return (
     <>
@@ -30,18 +34,22 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className={`${styles.main} ${mono.className}`}>
+        
 
-        <div>
-          <Image
-            src='/logo.jpg'
-            width={721}
-            height={250}
-            alt='CMH Logo'
-          />
+        {!isSongSelected ? (
+          <div>
+            <Link className={`${styles.homeLink}`} href='goldengatejams.com'>Back to CMH Home</Link>
+            <Image
+              src='/logo.jpg'
+              width={721}
+              height={250}
+              alt='CMH Logo'
+            />
+            <h1>SONGBOOK TRANSPOSITION TOOL</h1>
+            <p>By: Dan Dectis</p>
+          </div>
+        ) : null}
 
-        </div>
-
-        <h1>CMH SONGBOOK TRANSPOSITION TOOL</h1>
 
         {isSongSelected ? (
           <Transposer
@@ -57,6 +65,8 @@ export default function Home() {
           setIsSongSelected={setIsSongSelected}
           stepsTransposed={stepsTransposed}
           setStepsTransposed={setStepsTransposed}
+          setArrayOfSongTitles={setArrayOfSongTitles}
+          arrayOfSongTitles={arrayOfSongTitles}
         />
 
         {isSongSelected ? (

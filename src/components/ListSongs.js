@@ -77,6 +77,7 @@ const ListSongs = ({ songList, selectSong }) => {
 
   return (
     <div className={`${styles.main}`}>
+      <p>Click a letter below to view songs by artists starting with that letter. Elton is under E. Ben Folds is B etc</p>
       <ListControls />
       <div>
         {printSongList(songList)}

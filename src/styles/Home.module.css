@@ -108,6 +108,15 @@
 .logo {
   position: relative;
 }
+
+.homeLink{
+  position: absolute;
+  top: 1%;
+  left: 40%;
+  font-size: 1.5em;
+  text-decoration: underline;
+  text-align: center;
+}
 /* Enable hover only on non-touch devices */
 @media (hover: hover) and (pointer: fine) {
   .card:hover {

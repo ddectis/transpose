@@ -1,6 +1,9 @@
 .main{
-    margin-top: 50px;
     width: 100%;
+}
+
+.main p{
+    text-align: center;
 }
 
 .divider{
