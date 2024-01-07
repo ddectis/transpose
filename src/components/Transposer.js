@@ -6,6 +6,7 @@ import ChordSpacing from '@/components/ChordSpacing'
 import MenuButton from "./MenuButton";
 import FontSizer from "./FontSizer";
 import LineSpacer from "./LineSpacer";
+import { notFound } from "next/navigation";
 
 const Transposer = ({ isSongSelected, stepsTransposed, setStepsTransposed }) => {
 
@@ -16,15 +17,15 @@ const Transposer = ({ isSongSelected, stepsTransposed, setStepsTransposed }) => 
     //const originalNotesArray = ([...notesArray])
 
     const [isMenuOpen, setIsMenuOpen] = useState(true)
-    
+
 
     useEffect(() => {
     }, [isMenuOpen])
 
-    useEffect(() =>{
-        transposeNotesArray(1)
-        transposeNotesArray(-1)
-    }, [isSongSelected])
+    // useEffect(() => {
+    //     transposeNotesArray(1)
+    //     transposeNotesArray(-1)
+    // }, [isSongSelected])
 
     const toggleMenu = () => {
         console.log("toggle menu click")
@@ -73,22 +74,58 @@ const Transposer = ({ isSongSelected, stepsTransposed, setStepsTransposed }) => 
                         }
 
                         let remainder = ''
+                        let slashBassNote = ''
 
                         //this is meant to capture tonality / modifications after the pitch tone
                         if (current[i].length > 1) { //if the current note has more than 1 character, then we might have a minor chord etc on our hands
-                            //console.log("Current: " + current[1])
+                            console.log("Current: " + current[i])
                             if (current[i][1] === '#' || current[i][1] === 'b') { //but that 2nd character might be # or b 
                                 remainder = current[i].slice(2) //and if it is, then the first 2 characters are pitch related, so we need to take everything after the first 2 characters
                             } else {
                                 remainder = current[i].slice(1) //and if you have more than 1 char and the 2nd isn't # or b, take everythign after the first because you're looking at e.g. Am
                             }
 
+                            //here we check for slash chords which will often be like F#/D but could be something like Gm/D i.e. the / is not always the first character in remainder
+                            //although the part before the slash can be complex e.g. Gm, the part after the slash is always 1 char
+                            if (remainder.includes('/')) {
+                                //console.log("Slash chord detected!")
+                                //then we need to split the remainder at the /
+                                const splitRemainder = remainder.split('/')
+                                //and then if we take the index 1 of the splitRemainder array, we'll get just the note after the slash
+                                //console.log("Split Remainder: ", splitRemainder[1])
+                                //then you'd need to get that index of that note after the slash that we didn't know about
+                                let slashBaseNoteIndex = GetCurrentNote(splitRemainder[1])
+                                //console.log("Index of Note under the slash: " + slashBaseNoteIndex)
+                                //and ultimately we run a mini transpose function on the slashBassNote
+                                //and match it back up using the sharps / flats array like we do down around line 110 for the main note
+                                //and then create a remainder that includes the slash and the info after the slash
+                                slashBaseNoteIndex += transposeValue
+                                if (transposeValue !== 0) {
+                                    if (slashBaseNoteIndex === notesSharp.length) {
+                                        slashBaseNoteIndex = 0
+                                    }
+                                    if (slashBaseNoteIndex < 0) {
+                                        slashBaseNoteIndex = notesSharp.length - 1
+                                    }
+                                }
+
+                                if (useSharps) {
+                                    slashBassNote = notesSharp[slashBaseNoteIndex]
+                                } else {
+                                    slashBassNote = notesFlat[slashBaseNoteIndex]
+                                }
+                                //console.log("Slash Bass Note: " + slashBassNote)
+                                //console.log("Remainder just before adding slash: " + remainder)
+                                const slashSplit = remainder.split('/')
+                                //console.log("Slash Split: ", slashSplit)
+                                remainder = slashSplit[0] + '/' + slashBassNote
+
+                            }
                             //console.log("Remainder: " + remainder)
                         }
 
                         //this is to remove erroneous # or b which would show up sometimes
                         if (remainder[0] === "#" || remainder[0] === "b") {
-
                             remainder = remainder.substring(1)
                             //console.warn("# in wrong place, slicing new remainder: " + remainder)
                         }
@@ -131,10 +168,10 @@ const Transposer = ({ isSongSelected, stepsTransposed, setStepsTransposed }) => 
     return (
 
         <div className={`${styles.outerContainer} ${isMenuOpen ? styles.up : ''}`}>
-            
+
             <div className={`${styles.innerContainer} ${styles.top}`}>
                 <div className={`${styles.transposeSteps}`}>
-                    <p>Transpose</p> <div>{stepsTransposed} {stepsTransposed === 1 ? 'step' : 'steps'}</div>
+                    <div>Transpose {stepsTransposed} {stepsTransposed === 1 ? 'step' : 'steps'}</div>
                 </div>
                 <div className={`${styles.buttonHolder}`}>
                     <button id='transpose-up' onClick={() => transposeNotesArray(1)}>+1</button>
@@ -151,10 +188,10 @@ const Transposer = ({ isSongSelected, stepsTransposed, setStepsTransposed }) => 
 
             </div>
             <div className={`${styles.innerContainer}`}>
-                <FontSizer/>
+                <FontSizer />
             </div>
             <div className={`${styles.innerContainer}`}>
-                <LineSpacer/>
+                <LineSpacer />
             </div>
             <div className={`${styles.innerContainer} ${styles.bottom}`}>
                 <ChordSpacing isSongSelected={isSongSelected} />

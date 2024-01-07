@@ -10,7 +10,7 @@ const ChordSpacing = ({ isSongSelected }) => {
             //console.log(strongElements)
             let computedStyle = window.getComputedStyle(strongElements[0])
             let wordSpacing = computedStyle.wordSpacing.split('p') //letter spacing returns as ##px, thus we split at p
-            wordSpacing = parseInt(wordSpacing) + value
+            wordSpacing = parseInt(wordSpacing) + (3 * value)
             console.log("Spacing: " + wordSpacing)
             strongElements.forEach(element => {
                 element.style.wordSpacing = wordSpacing + "px"
@@ -25,7 +25,7 @@ const ChordSpacing = ({ isSongSelected }) => {
             <div>Chord Spacing</div>
             <button onClick={() => { changeWordSpacing(-1) }}>{`<<`}</button>
             <button onClick={() => { changeWordSpacing(1) }}>{`>>`}</button>
-            <p className={`${styles.tipText}`}>If it is not working, try transposing up / down and retry</p>
+            <div className={`${styles.tipText}`}>If it is not working, try transposing up / down and retry</div>
         </div>
 
     )

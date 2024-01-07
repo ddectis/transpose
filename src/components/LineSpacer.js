@@ -6,7 +6,7 @@ const LineSpacer = () => {
         const pElements = document.querySelectorAll('p')
         let computedStyle = window.getComputedStyle(pElements[0])
         let marginSize = computedStyle.marginBlock.split('p') //margin size returned e.g. ##px and we just want the number
-        marginSize = parseInt(marginSize) + value
+        marginSize = parseInt(marginSize) + (4 * value)
         pElements.forEach(element =>{
             element.style.marginBlock = marginSize + "px"
         })
