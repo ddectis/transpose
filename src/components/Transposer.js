@@ -6,7 +6,6 @@ import ChordSpacing from '@/components/ChordSpacing'
 import MenuButton from "./MenuButton";
 import FontSizer from "./FontSizer";
 import LineSpacer from "./LineSpacer";
-import { notFound } from "next/navigation";
 
 const Transposer = ({ isSongSelected, stepsTransposed, setStepsTransposed }) => {
 
@@ -156,8 +155,6 @@ const Transposer = ({ isSongSelected, stepsTransposed, setStepsTransposed }) => 
             //console.log(notesArray)
             //console.log("Original: ", originalNotesArray)
         }
-
-
     }
 
     const toggleSharpsFlats = () => {

@@ -5,7 +5,10 @@ import Image from 'next/image'
 const PageScroll = () => {
     const handleScroll = value => {
         //scroll the window down by the height of the viewport
-        window.scrollBy(0, (window.innerHeight * 0.8 * value))
+        window.scrollTo({
+            top: window.scrollY + window.innerHeight * 0.8 * value,
+            behavior: 'smooth',
+        })
         console.log("scrolling: " + value)
     }
 
