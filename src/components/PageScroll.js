@@ -6,7 +6,7 @@ const PageScroll = () => {
     const handleScroll = value => {
         //scroll the window down by the height of the viewport
         window.scrollTo({
-            top: window.scrollY + window.innerHeight * 0.8 * value,
+            top: window.scrollY + window.innerHeight * 0.66 * value,
             behavior: 'smooth',
         })
         console.log("scrolling: " + value)
